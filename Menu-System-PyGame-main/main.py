@@ -1,5 +1,6 @@
-import pygame, sys
+import pygame ,sys
 from button import Button
+from reflection import reflect
 
 pygame.init()
 
@@ -8,36 +9,37 @@ pygame.display.set_caption("RJSS Games")
 
 BG = pygame.image.load("assets/Cool Sky.jpg")
 
+# laserImage = pygame.image.load('laser.png')
 
 def get_font(size):  # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/font.otf", size)
 
 
-def play():
-    while True:
-        PLAY_MOUSE_POS = pygame.mouse.get_pos()
-
-        SCREEN.fill("black")
-
-        PLAY_TEXT = get_font(45).render("Yaha Reflection Hoga", True, "White")
-        PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 260))
-        SCREEN.blit(PLAY_TEXT, PLAY_RECT)
-
-        PLAY_BACK = Button(image=None, pos=(640, 460),
-                           text_input="BACK", font=get_font(40), base_color="White", hovering_color="Red")
-
-        PLAY_BACK.changeColor(PLAY_MOUSE_POS)
-        PLAY_BACK.update(SCREEN)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
-                    main_menu()
-
-        pygame.display.update()
+# def play():
+#     while True:
+#         PLAY_MOUSE_POS = pygame.mouse.get_pos()
+#
+#         SCREEN.fill("black")
+#
+#         PLAY_TEXT = get_font(45).render("Yaha Reflection Hoga", True, "White")
+#         PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 260))
+#         SCREEN.blit(PLAY_TEXT, PLAY_RECT)
+#
+#         PLAY_BACK = Button(image=None, pos=(640, 460),
+#                            text_input="BACK", font=get_font(40), base_color="White", hovering_color="Red")
+#
+#         PLAY_BACK.changeColor(PLAY_MOUSE_POS)
+#         PLAY_BACK.update(SCREEN)
+#
+#         for event in pygame.event.get():
+#             if event.type == pygame.QUIT:
+#                 pygame.quit()
+#                 sys.exit()
+#             if event.type == pygame.MOUSEBUTTONDOWN:
+#                 if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
+#                     main_menu()
+#
+#         pygame.display.update()
 
 
 def options():
@@ -95,7 +97,8 @@ def main_menu():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    play()
+                    reflect()
+
                 if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                     options()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
