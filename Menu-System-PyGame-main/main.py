@@ -7,7 +7,7 @@ pygame.init()
 SCREEN = pygame.display.set_mode((1200, 600))
 pygame.display.set_caption("RJSS Games")
 
-BG = pygame.image.load("assets/Cool Sky.jpg")
+Bg = pygame.image.load("assets/Cool Sky.jpg")
 
 # laserImage = pygame.image.load('laser.png')
 
@@ -71,7 +71,7 @@ def options():
 
 def main_menu():
     while True:
-        SCREEN.blit(BG, (0, 0))
+        SCREEN.blit(Bg, (0, 0))
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
