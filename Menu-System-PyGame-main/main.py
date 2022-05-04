@@ -7,7 +7,7 @@ pygame.init()
 SCREEN = pygame.display.set_mode((1200, 600))
 pygame.display.set_caption("RJSS Games")
 
-Bg = pygame.image.load("assets/Cool Sky.jpg")
+Bg = pygame.image.load("assets/Cool Sky.png")
 
 # laserImage = pygame.image.load('laser.png')
 
@@ -75,15 +75,15 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(100).render("RJSS Games", True, "#f12711")
-        MENU_RECT = MENU_TEXT.get_rect(center=(600, 100))
+        MENU_TEXT = get_font(120).render("RJSS Games", True, "#ffb700")
+        MENU_RECT = MENU_TEXT.get_rect(center=(600, 80))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(600, 230),
-                             text_input="Reflection", font=get_font(70), base_color="Yellow", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(600, 360),
-                                text_input="Refraction", font=get_font(70), base_color="Yellow", hovering_color="White")
+        PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(600, 210),
+                             text_input="Reflection", font=get_font(70), base_color="Black", hovering_color="White")
+        OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(600, 350),
+                                text_input="Refraction", font=get_font(70), base_color="Black", hovering_color="White")
         QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 490),
-                             text_input="QUIT", font=get_font(75), base_color="Magenta", hovering_color="White")
+                             text_input="EXIT", font=get_font(70), base_color="Black", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
 
