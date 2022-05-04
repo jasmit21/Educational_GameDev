@@ -19,10 +19,11 @@ def rot_center(image, angle):
 
 def reflect():
 
-    playerx = 0
+    playerx = -150.5
+    # playery = -115
     playery = 0
-    moveTop = 0
-    moveBottom = 0
+    movetop = 0
+    movebottom = 0
     playerCentre = 600
     laserAngle =0
 
@@ -35,17 +36,18 @@ def reflect():
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
-                    moveBottom = 5
+                     movetop = 1
 
                 if event.key == pygame.K_DOWN:
-                    moveTop = 5
+                     movebottom = 1
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
-                    moveBottom = 0
+                     movetop = 0
 
                 if event.key == pygame.K_DOWN:
-                    moveTop = 0
+                     movebottom = 0
+
 
         screen.fill('#FFE7BD')
 
@@ -53,4 +55,11 @@ def reflect():
 
         player(playerx,playery,rot_center(laserImage,(laserAngle)))
 
+        if playery > -115:  # user movement logic
+            playery = playery - movetop
+
+        if playery <435:
+            playery = playery + movebottom
+
         pygame.display.update()
+
