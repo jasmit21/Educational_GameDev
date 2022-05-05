@@ -60,10 +60,10 @@ def reflect():
                 pygame.quit()
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_UP or event.key == pygame.K_w:
                      movetop = 1
 
-                if event.key == pygame.K_DOWN:
+                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                      movebottom = 1
 
                 if event.key == pygame.K_a:
@@ -76,10 +76,10 @@ def reflect():
                     laserState = laserState * -1
 
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_UP or event.key == pygame.K_w:
                      movetop = 0
 
-                if event.key == pygame.K_DOWN:
+                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                      movebottom = 0
 
                 if event.key == pygame.K_a:
