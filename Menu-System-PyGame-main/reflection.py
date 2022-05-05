@@ -37,7 +37,6 @@ def shootLaser(playerx,playery,laserAngle):
         pygame.draw.line(screen,green,((playerx + 139),(playery + 140)),(endy,(playery - 325)),2)
         reflectLaser(endy,playerx,laserAngle)
 
-
 def reflect():
 
     laserState = -1
