@@ -1,8 +1,11 @@
+import math
 
 import pygame
 
-
 screen = pygame.display.set_mode((1200,600))
+green =(0,0,255)
+black = (0,0,0)
+white = (255,255,255)
 
 def player(playerx,playery,rot_image):
     screen.blit(rot_image,(playerx,playery))
@@ -17,8 +20,27 @@ def rot_center(image, angle):
     return rot_image
 
 
+def reflectLaser(endx, playery, laserAngle):
+    pygame.draw.line(screen, green, (endx, (playery - 325)),
+                     (endx - (465 * math.tan(math.radians(laserAngle))), (playery + 140)), 2)
+
+    pygame.draw.line(screen, black, (endx, (playery - 325)), (endx, (playery - 275)), 1)
+    pygame.draw.line(screen, black, (endx, (playery - 250)), (endx, (playery - 200)), 1)
+    pygame.draw.line(screen, black, (endx, (playery - 175)), (endx, (playery - 125)), 1)
+
+def shootLaser(playerx,playery,laserAngle):
+
+    x = -145.5
+    endy = playery + 800 + (x * math.tan(math.radians(laserAngle)))
+
+    if  endy > 27 and endy < 773:
+        pygame.draw.line(screen,green,((playerx + 139),(playery + 140)),(endy,(playery - 325)),2)
+        reflectLaser(endy,playerx,laserAngle)
+
+
 def reflect():
 
+    laserState = -1
     playerx = -150.5
     # playery = -115
     playery = 0
@@ -26,6 +48,9 @@ def reflect():
     movebottom = 0
     playerCentre = 600
     laserAngle =0
+
+    leftTilt=0
+    rightTilt=0
 
     while True:
 
@@ -41,6 +66,15 @@ def reflect():
                 if event.key == pygame.K_DOWN:
                      movebottom = 1
 
+                if event.key == pygame.K_a:
+                    leftTilt = 1
+
+                if event.key == pygame.K_d:
+                    rightTilt = 1
+
+                if event.key == pygame.K_RETURN:
+                    laserState = laserState * -1
+
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                      movetop = 0
@@ -48,17 +82,32 @@ def reflect():
                 if event.key == pygame.K_DOWN:
                      movebottom = 0
 
+                if event.key == pygame.K_a:
+                    leftTilt = 0
+
+                if event.key == pygame.K_d:
+                    rightTilt = 0
+
 
         screen.fill('#FFE7BD')
 
         laserImage = pygame.image.load('laser.png')
 
+        if laserState == 1:
+            shootLaser(playerx,playery,laserAngle)
+
+        if laserAngle < 55:
+            laserAngle = laserAngle + leftTilt
+
+        if laserAngle > -55:
+            laserAngle = laserAngle - rightTilt
+
         player(playerx,playery,rot_center(laserImage,(laserAngle)))
 
-        if playery > -115:  # user movement logic
+        if playery > -55:  # user movement logic
             playery = playery - movetop
 
-        if playery <435:
+        if playery <375:
             playery = playery + movebottom
 
         pygame.display.update()
