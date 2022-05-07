@@ -2,14 +2,58 @@ import math
 import sys
 
 import pygame
-
+pygame.init()
 screen = pygame.display.set_mode((1200,600))
 green =(0,255,0)
 black = (0,0,0)
 white = (255,255,255)
 
+font14 = pygame.font.SysFont("font.otf" , 22)
+font20 = pygame.font.SysFont("monospace", 20)
+
 def player(playerx,playery,rot_image):
     screen.blit(rot_image,(playerx,playery))
+    
+def quitMenu(userQuit):  # quit menu options
+
+    while True:
+
+        for event in pygame.event.get():  # get user events
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    userQuit = 1
+
+                if event.key == pygame.K_RIGHT:
+                    userQuit = 0
+
+                if event.key == pygame.K_RETURN:
+                    if userQuit == 1:
+                        exitGame = True
+                        quit()
+
+                    else:
+                        return
+
+        pygame.draw.rect(screen, black, (300, 265, 200, 70))
+        pygame.draw.rect(screen, white, (302, 267, 196, 66))
+
+        quitPrompt = font14.render("Would you like to quit?", 1, black)
+        quitYes = font20.render("YES", 1, black)
+        quitNo = font20.render("NO", 1, black)
+
+        if userQuit == 1:  # user selection box
+            pygame.draw.rect(screen, black, (333, 301, 40, 20), 1)
+
+        if userQuit == 0:
+            pygame.draw.rect(screen, black, (431, 301, 31, 20), 1)
+
+        screen.blit(quitPrompt, (309, 280))  # print user prompt quit?(Y/N)
+        screen.blit(quitYes, (335, 300))
+        screen.blit(quitNo, (435, 300))
+
+        pygame.display.update()
+
 
 def rot_center(image, angle):
     """rotate an image while keeping its center and size"""
@@ -40,6 +84,7 @@ def shootLaser(playerx,playery,laserAngle):
 
 def reflect():
 
+    userQuit = 0
     laserState = -1
     playerx = -150.5
     # playery = -115
@@ -57,7 +102,7 @@ def reflect():
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
-                pygame.quit()
+                quitMenu(userQuit)
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP or event.key == pygame.K_w:

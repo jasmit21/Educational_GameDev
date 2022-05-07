@@ -1,7 +1,7 @@
-
 import pygame ,sys
 from button import Button
 from reflection import reflect
+from refraction import refract
 from pyvidplayer import Video
 
 pygame.init()
@@ -12,6 +12,8 @@ pygame.display.set_caption("RJSS Games")
 Bg = pygame.image.load("assets/Cool Sky.png")
 
 vid = Video("assets/vid.mp4")
+vid2 = Video("assets/vid2.mp4")
+vid2.set_size((1200, 600))
 vid.set_size((1200, 600))
 
 
@@ -20,31 +22,7 @@ def get_font(size):  # Returns Press-Start-2P in the desired size
 
 
 
-def Refraction():
-    while True:
-        Refraction_MOUSE_POS = pygame.mouse.get_pos()
 
-        SCREEN.fill("Cyan")
-
-        Refraction_TEXT = get_font(45).render("Yaha Refraction hoga", True, "Black")
-        Refraction_RECT = Refraction_TEXT.get_rect(center=(600, 260))
-        SCREEN.blit(Refraction_TEXT, Refraction_RECT)
-
-        Refraction_BACK = Button(image=None, pos=(600, 460),
-                              text_input="BACK", font=get_font(40), base_color="Black", hovering_color="Green")
-
-        Refraction_BACK.changeColor(Refraction_MOUSE_POS)
-        Refraction_BACK.update(SCREEN)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if Refraction_BACK.checkForInput(Refraction_MOUSE_POS):
-                    main_menu()
-
-        pygame.display.update()
 
 def intro():
 
@@ -56,20 +34,26 @@ def intro():
                 vid.close()
                 reflect()
 
+def intro2():
+
+    while True:
+        vid2.draw(SCREEN, (0, 0))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                vid2.close()
+                refract()
+
 def help():
         while True:
             Refraction_MOUSE_POS = pygame.mouse.get_pos()
 
             SCREEN.fill("White")
-            #
-            # Help_TEXT = get_font(45).render("Yaha Refraction hoga", True, "Black")
-            # Help_RECT = Help_TEXT.get_rect(center=(600, 260))
-            # SCREEN.blit(Help_TEXT, Help_RECT)
             Helpbg = pygame.image.load("assets/Help Menu.png")
             SCREEN.blit(Helpbg , (0 , 0))
 
-            Help_BACK = Button(image=None, pos=(600, 545),
-                                     text_input="BACK", font=get_font(40), base_color="Black", hovering_color="Green")
+            Help_BACK = Button(image=None, pos=(75, 30),
+                                     text_input="BACK", font=get_font(40), base_color="Black", hovering_color="White")
 
             Help_BACK.changeColor(Refraction_MOUSE_POS)
             Help_BACK.update(SCREEN)
@@ -115,9 +99,10 @@ def main_menu():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if Reflection_BUTTON.checkForInput(MENU_MOUSE_POS):
                     intro()
-                    reflect()
+                    # reflect()
                 if Refraction_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    Refraction()
+                    intro2()
+                    # refract()
                 if HELP_BUTTON.checkForInput(MENU_MOUSE_POS):
                     help()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
