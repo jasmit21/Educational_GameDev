@@ -91,13 +91,13 @@ def main_menu():
         MENU_TEXT = get_font(120).render("RJSS Games", True, "#ffb700")
         MENU_RECT = MENU_TEXT.get_rect(center=(600, 65))  #80
 
-        Reflection_BUTTON = Button(image=pygame.image.load("assets/Reflection Rect.png"), pos=(600, 180),#200
+        Reflection_BUTTON = Button(image=pygame.image.load("assets/Reflection Rect.png"), pos=(600, 175),#200
                              text_input="Reflection", font=get_font(70), base_color="Black", hovering_color="White")
-        Refraction_BUTTON = Button(image=pygame.image.load("assets/Refraction Rect.png"), pos=(600, 310), #350
+        Refraction_BUTTON = Button(image=pygame.image.load("assets/Refraction Rect.png"), pos=(600, 292), #350
                                 text_input="Refraction", font=get_font(70), base_color="Black", hovering_color="White")
         QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 530),#490
                              text_input="EXIT", font=get_font(70), base_color="Black", hovering_color="White")
-        HELP_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 420),
+        HELP_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 410),
                              text_input="Help", font=get_font(70), base_color="Black", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
