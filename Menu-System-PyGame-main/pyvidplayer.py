@@ -5,7 +5,6 @@ from os.path import exists, basename, splitext
 from os import strerror
 from errno import ENOENT
 
-
 class Video:
     def __init__(self, path):
         self.path = path
@@ -40,32 +39,13 @@ class Video:
                 "paused": self.video.get_pause(),
                 "size": self.size}
 
-    def restart(self):
-        self.video.seek(0, relative=False, accurate=False)
-        self.frames = 0
-        self.active = True
-
     def close(self):
         self.video.close_player()
         self.active = False
-
+    #
     def set_size(self, size):
         self.video.set_size(size[0], size[1])
         self.size = size
-
-    # def set_volume(self, volume):
-    #     self.video.set_volume(volume)
-
-    def seek(self, seek_time, accurate=False):
-        vid_time = self.video.get_pts()
-        if vid_time + seek_time < self.duration and self.active:
-            self.video.seek(seek_time)
-            if seek_time < 0:
-                while (vid_time + seek_time < self.frames * self.frame_delay):
-                    self.frames -= 1
-
-    def toggle_pause(self):
-        self.video.toggle_pause()
 
     def update(self):
         updated = False
