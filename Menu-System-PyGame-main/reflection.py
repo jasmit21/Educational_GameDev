@@ -1,4 +1,5 @@
 import math
+import sys
 
 import pygame
 
@@ -73,6 +74,10 @@ def reflect():
 
                 if event.key == pygame.K_RETURN:
                     laserState = laserState * -1
+
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP or event.key == pygame.K_w:
