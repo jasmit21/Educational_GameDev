@@ -89,15 +89,15 @@ def main_menu():
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         MENU_TEXT = get_font(120).render("RJSS Games", True, "#ffb700")
-        MENU_RECT = MENU_TEXT.get_rect(center=(600, 80))
+        MENU_RECT = MENU_TEXT.get_rect(center=(600, 65))  #80
 
-        Reflection_BUTTON = Button(image=pygame.image.load("assets/Reflection Rect.png"), pos=(600, 210),
+        Reflection_BUTTON = Button(image=pygame.image.load("assets/Reflection Rect.png"), pos=(600, 180),#200
                              text_input="Reflection", font=get_font(70), base_color="Black", hovering_color="White")
-        Refraction_BUTTON = Button(image=pygame.image.load("assets/Refraction Rect.png"), pos=(600, 350),
+        Refraction_BUTTON = Button(image=pygame.image.load("assets/Refraction Rect.png"), pos=(600, 310), #350
                                 text_input="Refraction", font=get_font(70), base_color="Black", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 490),
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 530),#490
                              text_input="EXIT", font=get_font(70), base_color="Black", hovering_color="White")
-        HELP_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 480),
+        HELP_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 420),
                              text_input="Help", font=get_font(70), base_color="Black", hovering_color="White")
 
         SCREEN.blit(MENU_TEXT, MENU_RECT)
