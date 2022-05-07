@@ -60,13 +60,15 @@ def help():
         while True:
             Refraction_MOUSE_POS = pygame.mouse.get_pos()
 
-            SCREEN.fill("Cyan")
+            SCREEN.fill("White")
+            #
+            # Help_TEXT = get_font(45).render("Yaha Refraction hoga", True, "Black")
+            # Help_RECT = Help_TEXT.get_rect(center=(600, 260))
+            # SCREEN.blit(Help_TEXT, Help_RECT)
+            Helpbg = pygame.image.load("assets/Help Menu.png")
+            SCREEN.blit(Helpbg , (0 , 0))
 
-            Help_TEXT = get_font(45).render("Yaha Refraction hoga", True, "Black")
-            Help_RECT = Help_TEXT.get_rect(center=(600, 260))
-            SCREEN.blit(Help_TEXT, Help_RECT)
-
-            Help_BACK = Button(image=None, pos=(600, 460),
+            Help_BACK = Button(image=None, pos=(600, 545),
                                      text_input="BACK", font=get_font(40), base_color="Black", hovering_color="Green")
 
             Help_BACK.changeColor(Refraction_MOUSE_POS)
