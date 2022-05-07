@@ -16,13 +16,8 @@ vid2 = Video("assets/vid2.mp4")
 vid2.set_size((1200, 600))
 vid.set_size((1200, 600))
 
-
 def get_font(size):  # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/font.otf", size)
-
-
-
-
 
 def intro():
 
