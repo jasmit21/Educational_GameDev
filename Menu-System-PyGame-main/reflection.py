@@ -3,7 +3,7 @@ import math
 import pygame
 
 screen = pygame.display.set_mode((1200,600))
-green =(0,0,255)
+green =(0,255,0)
 black = (0,0,0)
 white = (255,255,255)
 
@@ -20,13 +20,13 @@ def rot_center(image, angle):
     return rot_image
 
 
-def reflectLaser(endx, playery, laserAngle):
-    pygame.draw.line(screen, green, (endx, (playery - 325)),
-                     (endx - (465 * math.tan(math.radians(laserAngle))), (playery + 140)), 2)
+def reflectLaser(endy, playery, laserAngle):
+    pygame.draw.line(screen, green, (endy, (playery - 325)),
+                     (endy - (465 * math.tan(math.radians(laserAngle))), (playery + 140)), 2)
 
-    pygame.draw.line(screen, black, (endx, (playery - 325)), (endx, (playery - 275)), 1)
-    pygame.draw.line(screen, black, (endx, (playery - 250)), (endx, (playery - 200)), 1)
-    pygame.draw.line(screen, black, (endx, (playery - 175)), (endx, (playery - 125)), 1)
+    pygame.draw.line(screen, black, (endy, (playery - 325)), (endy, (playery - 275)), 1)
+    pygame.draw.line(screen, black, (endy, (playery - 250)), (endy, (playery - 200)), 1)
+    pygame.draw.line(screen, black, (endy, (playery - 175)), (endy, (playery - 125)), 1)
 
 def shootLaser(playerx,playery,laserAngle):
 
