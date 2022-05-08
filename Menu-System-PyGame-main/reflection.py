@@ -40,6 +40,7 @@ def quitMenu(userQuit):  # quit menu options
         pygame.draw.rect(screen, black, (500, 265, 200, 70))
         pygame.draw.rect(screen, white, (502, 267, 196, 66))
 
+
         quitPrompt = font14.render("Would you like to quit?", 1, black)
         quitYes = font20.render("YES", 1, black)
         quitNo = font20.render("NO", 1, black)
@@ -169,7 +170,8 @@ def shootLaser(playerx,playery,laserAngle):
 #             playery = playery + movebottom
 #
 #         pygame.display.update()
-
+def mirror():
+    pygame.draw.rect(screen, black, (850,20, 20, 550))
 def reflect():
 
     userQuit = 0
@@ -200,10 +202,10 @@ def reflect():
                      movebottom = 1
 
                 if event.key == pygame.K_a:
-                    leftTilt = 1
+                    leftTilt = 0.2
 
                 if event.key == pygame.K_d:
-                    rightTilt = 1
+                    rightTilt = 0.2
 
                 if event.key == pygame.K_RETURN:
                     laserState = laserState * -1
@@ -228,6 +230,7 @@ def reflect():
 
 
         screen.fill('#FFE7BD')
+        mirror()
 
         laserImage = pygame.image.load('laser.png')
 
@@ -249,3 +252,5 @@ def reflect():
             playery = playery + movebottom
 
         pygame.display.update()
+
+reflect()
