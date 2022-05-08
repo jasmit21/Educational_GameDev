@@ -3,7 +3,9 @@ import sys
 
 import pygame
 pygame.init()
-screen = pygame.display.set_mode((1200,600))
+display_widhth = 1200
+display_height = 600
+screen = pygame.display.set_mode((display_widhth,display_height))
 green =(0,255,0)
 black = (0,0,0)
 white = (255,255,255)
@@ -20,7 +22,7 @@ def quitMenu(userQuit):  # quit menu options
 
         for event in pygame.event.get():  # get user events
 
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
                 if event.key == pygame.K_LEFT:
                     userQuit = 1
 
@@ -65,33 +67,119 @@ def rot_center(image, angle):
     return rot_image
 
 
-def reflectLaser(endy, playery, laserAngle):
-    pygame.draw.line(screen, green, (endy, (playery - 325)),
-                     (endy - (465 * math.tan(math.radians(laserAngle))), (playery + 140)), 2)
+def reflectLaser(endy, playerx, laserAngle):
 
-    pygame.draw.line(screen, black, (endy, (playery - 325)), (endy, (playery - 275)), 1)
-    pygame.draw.line(screen, black, (endy, (playery - 250)), (endy, (playery - 200)), 1)
-    pygame.draw.line(screen, black, (endy, (playery - 175)), (endy, (playery - 125)), 1)
+    # pygame.draw.line(screen, green, (endy, (playery - 325)),
+    #                  (endy - (465 * math.tan(math.radians(laserAngle))), (playery + 140)), 2)
+
+    pygame.draw.line(screen, green, ((playerx + 140),endy),((playerx+140),endy - (400 * math.tan(math.radians(laserAngle)))), 2)
+
+    pygame.draw.line(screen, black, ( (playerx - 325),endy), ( (playerx - 275),endy), 1)
+    pygame.draw.line(screen, black, ( (playerx - 250),endy), ( (playerx - 200),endy), 1)
+    pygame.draw.line(screen, black, ( (playerx - 175),endy), ( (playerx - 125),endy), 1)
+    # pygame.draw.line(screen, black, (endy, (playery - 325)), (endy, (playery - 275)), 1)
+    # pygame.draw.line(screen, black, (endy, (playery - 250)), (endy, (playery - 200)), 1)
+    # pygame.draw.line(screen, black, (endy, (playery - 175)), (endy, (playery - 125)), 1)
 
 def shootLaser(playerx,playery,laserAngle):
 
-    x = -145.5
-    endy = playery + 800 + (x * math.tan(math.radians(laserAngle)))
+    x = 1050  #-150.5
+    endy = playery + 140 - (x * math.tan(math.radians(laserAngle)))
 
-    if  endy > 27 and endy < 773:
-        pygame.draw.line(screen,green,((playerx + 139),(playery + 140)),(endy,(playery - 325)),2)
-        reflectLaser(endy,playerx,laserAngle)
+    # if  endy > 27 and endy < 773:
+    pygame.draw.line(screen,green,((playerx + 139),(playery + 140)),((playerx + 1000),endy,),2)
+    reflectLaser(endy,playerx,laserAngle)
+
+# def reflect():
+#
+#     userQuit = 0
+#     laserState = -1
+#     playerx = -150.5
+#     # playery = -115
+#     playery = 0
+#     movetop = 0
+#     movebottom = 0
+#     playerCentre = 600
+#     laserAngle =0
+#
+#     leftTilt=0
+#     rightTilt=0
+#
+#     while True:
+#
+#         for event in pygame.event.get():
+#
+#             if event.type == pygame.QUIT:
+#                 quitMenu(userQuit)
+#
+#             if event.type == pygame.KEYDOWN:
+#                 if event.key == pygame.K_UP or event.key == pygame.K_w:
+#                      movetop = 1
+#
+#                 if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+#                      movebottom = 1
+#
+#                 if event.key == pygame.K_a:
+#                     leftTilt = 1
+#
+#                 if event.key == pygame.K_d:
+#                     rightTilt = 1
+#
+#                 if event.key == pygame.K_RETURN:
+#                     laserState = laserState * -1
+#
+#                 if event.key == pygame.K_ESCAPE:
+#                     quitMenu(userQuit)
+#                     # pygame.quit()
+#                     # sys.exit()
+#
+#             if event.type == pygame.KEYUP:
+#                 if event.key == pygame.K_UP or event.key == pygame.K_w:
+#                      movetop = 0
+#
+#                 if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+#                      movebottom = 0
+#
+#                 if event.key == pygame.K_a:
+#                     leftTilt = 0
+#
+#                 if event.key == pygame.K_d:
+#                     rightTilt = 0
+#
+#
+#         screen.fill('#FFE7BD')
+#
+#         laserImage = pygame.image.load('laser.png')
+#
+#         if laserState == 1:
+#             shootLaser(playerx,playery,laserAngle)
+#
+#         if laserAngle < 55:
+#             laserAngle = laserAngle + leftTilt
+#
+#         if laserAngle > -55:
+#             laserAngle = laserAngle - rightTilt
+#
+#         player(playerx,playery,rot_center(laserImage,(laserAngle)))
+#
+#         if playery > -55:  # user movement logic
+#             playery = playery - movetop
+#
+#         if playery <375:
+#             playery = playery + movebottom
+#
+#         pygame.display.update()
 
 def reflect():
 
     userQuit = 0
     laserState = -1
     playerx = -150.5
-    # playery = -115
-    playery = 0
+
+    playery = display_height/2 -140
     movetop = 0
     movebottom = 0
-    playerCentre = 600
+    # playerCentre = 600
     laserAngle =0
 
     leftTilt=0
@@ -121,8 +209,9 @@ def reflect():
                     laserState = laserState * -1
 
                 if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
+                    quitMenu(userQuit)
+                    # pygame.quit()
+                    # sys.exit()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP or event.key == pygame.K_w:
@@ -160,5 +249,3 @@ def reflect():
             playery = playery + movebottom
 
         pygame.display.update()
-
-#mini proj
