@@ -11,7 +11,7 @@ black = (0,0,0)
 white = (255,255,255)
 
 font14 = pygame.font.SysFont("font.otf" , 22)
-font20 = pygame.font.SysFont("monospace", 20)
+font20 = pygame.font.SysFont("font.otf", 22)
 
 def player(playerx,playery,rot_image):
     screen.blit(rot_image,(playerx,playery))
@@ -37,22 +37,22 @@ def quitMenu(userQuit):  # quit menu options
                     else:
                         return
 
-        pygame.draw.rect(screen, black, (300, 265, 200, 70))
-        pygame.draw.rect(screen, white, (302, 267, 196, 66))
+        pygame.draw.rect(screen, black, (580, 265, 200, 70))
+        pygame.draw.rect(screen, white, (582, 267, 196, 66))
 
         quitPrompt = font14.render("Would you like to quit?", 1, black)
         quitYes = font20.render("YES", 1, black)
         quitNo = font20.render("NO", 1, black)
 
         if userQuit == 1:  # user selection box
-            pygame.draw.rect(screen, black, (333, 301, 40, 20), 1)
+            pygame.draw.rect(screen, black, (613, 301, 40, 20), 1)
 
         if userQuit == 0:
-            pygame.draw.rect(screen, black, (431, 301, 31, 20), 1)
+            pygame.draw.rect(screen, black, (711, 301, 31, 20), 1)
 
-        screen.blit(quitPrompt, (309, 280))  # print user prompt quit?(Y/N)
-        screen.blit(quitYes, (335, 300))
-        screen.blit(quitNo, (435, 300))
+        screen.blit(quitPrompt, (600, 276))  # print user prompt quit?(Y/N)
+        screen.blit(quitYes, (617, 305))
+        screen.blit(quitNo, (715, 305))
 
         pygame.display.update()
 
