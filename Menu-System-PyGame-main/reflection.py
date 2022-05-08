@@ -83,11 +83,11 @@ def reflectLaser(endy, playerx, laserAngle):
 
 def shootLaser(playerx,playery,laserAngle):
 
-    x = 1050  #-150.5
+    x = 1020  #-150.5
     endy = playery + 140 - (x * math.tan(math.radians(laserAngle)))
 
     # if  endy > 27 and endy < 773:
-    pygame.draw.line(screen,green,((playerx + 139),(playery + 140)),((playerx + 1000),endy,),2)
+    pygame.draw.line(screen,green,((playerx + 150),(playery + 140)),((playerx + 1000),endy,),2)
     reflectLaser(endy,playerx,laserAngle)
 
 # def reflect():
