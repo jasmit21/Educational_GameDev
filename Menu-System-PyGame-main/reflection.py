@@ -37,22 +37,22 @@ def quitMenu(userQuit):  # quit menu options
                     else:
                         return
 
-        pygame.draw.rect(screen, black, (580, 265, 200, 70))
-        pygame.draw.rect(screen, white, (582, 267, 196, 66))
+        pygame.draw.rect(screen, black, (500, 265, 200, 70))
+        pygame.draw.rect(screen, white, (502, 267, 196, 66))
 
         quitPrompt = font14.render("Would you like to quit?", 1, black)
         quitYes = font20.render("YES", 1, black)
         quitNo = font20.render("NO", 1, black)
 
         if userQuit == 1:  # user selection box
-            pygame.draw.rect(screen, black, (613, 301, 40, 20), 1)
+            pygame.draw.rect(screen, black, (533, 301, 40, 20), 1)
 
         if userQuit == 0:
-            pygame.draw.rect(screen, black, (711, 301, 31, 20), 1)
+            pygame.draw.rect(screen, black, (631, 301, 31, 20), 1)
 
-        screen.blit(quitPrompt, (600, 276))  # print user prompt quit?(Y/N)
-        screen.blit(quitYes, (617, 305))
-        screen.blit(quitNo, (715, 305))
+        screen.blit(quitPrompt, (520, 276))  # print user prompt quit?(Y/N)
+        screen.blit(quitYes, (537, 305))
+        screen.blit(quitNo, (635, 305))
 
         pygame.display.update()
 
