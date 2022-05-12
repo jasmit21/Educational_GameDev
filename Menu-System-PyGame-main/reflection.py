@@ -8,6 +8,7 @@ display_height = 600
 screen = pygame.display.set_mode((display_widhth,display_height))
 green =(0,255,0)
 black = (0,0,0)
+red = (255,0,0)
 white = (255,255,255)
 
 font14 = pygame.font.SysFont("font.otf" , 22)
@@ -70,10 +71,11 @@ def rot_center(image, angle):
 
 def reflectLaser(endy, playerx, laserAngle):
 
-    # pygame.draw.line(screen, green, (endy, (playery - 325)),
+    # pygame.draw.line(screen, green, (endy, (playery - 325)), 43 103 241
     #                  (endy - (465 * math.tan(math.radians(laserAngle))), (playery + 140)), 2)
 
-    pygame.draw.line(screen, green, ((playerx + 140),endy),((playerx+140),endy - (400 * math.tan(math.radians(laserAngle)))), 2)
+    # pygame.draw.line(screen, green, ((playerx + 140),endy),((playerx+140),endy - (400 * math.tan(math.radians(laserAngle)))), 2)
+    pygame.draw.line(screen, red, ((playerx + 1000.5),endy),((playerx+150.5),endy - (1020* math.tan(math.radians(laserAngle)))), 2)
 
     pygame.draw.line(screen, black, ( (playerx + 1000.5),endy), ( (playerx + 950.5),endy), 1)
     pygame.draw.line(screen, black, ( (playerx + 925.5),endy), ( (playerx + 875.5),endy), 1)
