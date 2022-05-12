@@ -253,4 +253,4 @@ def reflect():
 
         pygame.display.update()
 
-reflect()
+# reflect()
