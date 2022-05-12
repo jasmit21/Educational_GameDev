@@ -108,7 +108,7 @@ def quitMenu(userQuit):  # quit menu options
 
         for event in pygame.event.get():  # get user events
 
-            if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     userQuit = 1
 
@@ -175,88 +175,13 @@ def shootLaser(playerx,playery,laserAngle):
     if endy > 22 and endy < 570:
         reflectLaser(endy,playerx,laserAngle)
 
-# def reflect():
-#
-#     userQuit = 0
-#     laserState = -1
-#     playerx = -150.5
-#     # playery = -115
-#     playery = 0
-#     movetop = 0
-#     movebottom = 0
-#     playerCentre = 600
-#     laserAngle =0
-#
-#     leftTilt=0
-#     rightTilt=0
-#
-#     while True:
-#
-#         for event in pygame.event.get():
-#
-#             if event.type == pygame.QUIT:
-#                 quitMenu(userQuit)
-#
-#             if event.type == pygame.KEYDOWN:
-#                 if event.key == pygame.K_UP or event.key == pygame.K_w:
-#                      movetop = 1
-#
-#                 if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-#                      movebottom = 1
-#
-#                 if event.key == pygame.K_a:
-#                     leftTilt = 1
-#
-#                 if event.key == pygame.K_d:
-#                     rightTilt = 1
-#
-#                 if event.key == pygame.K_RETURN:
-#                     laserState = laserState * -1
-#
-#                 if event.key == pygame.K_ESCAPE:
-#                     quitMenu(userQuit)
-#                     # pygame.quit()
-#                     # sys.exit()
-#
-#             if event.type == pygame.KEYUP:
-#                 if event.key == pygame.K_UP or event.key == pygame.K_w:
-#                      movetop = 0
-#
-#                 if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-#                      movebottom = 0
-#
-#                 if event.key == pygame.K_a:
-#                     leftTilt = 0
-#
-#                 if event.key == pygame.K_d:
-#                     rightTilt = 0
-#
-#
-#         screen.fill('#FFE7BD')
-#
-#         laserImage = pygame.image.load('laser.png')
-#
-#         if laserState == 1:
-#             shootLaser(playerx,playery,laserAngle)
-#
-#         if laserAngle < 55:
-#             laserAngle = laserAngle + leftTilt
-#
-#         if laserAngle > -55:
-#             laserAngle = laserAngle - rightTilt
-#
-#         player(playerx,playery,rot_center(laserImage,(laserAngle)))
-#
-#         if playery > -55:  # user movement logic
-#             playery = playery - movetop
-#
-#         if playery <375:
-#             playery = playery + movebottom
-#
-#         pygame.display.update()
+def get_font(size):  # Returns Press-Start-2P in the desired size
+    return pygame.font.Font("assets/font.otf", size)
+
 def mirror():
     pygame.draw.rect(screen, black, (850,20, 20, 550))
 def reflect():
+
 
     userQuit = 0
     laserState = -1
@@ -276,7 +201,8 @@ def reflect():
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
-                quitMenu(userQuit)
+                # quitMenu(userQuit)
+                pygame.quit()
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP or event.key == pygame.K_w:
@@ -334,6 +260,8 @@ def reflect():
 
         if playery <375:
             playery = playery + movebottom
+
+
 
         pygame.display.update()
 
