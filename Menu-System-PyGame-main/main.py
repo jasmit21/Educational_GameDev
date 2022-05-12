@@ -69,7 +69,7 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
-        MENU_TEXT = get_font(120).render("RJSS Games", True, "#ffb700")
+        MENU_TEXT = get_font(120).render("Let The Light Reflect", True, "#ffb700")
         MENU_RECT = MENU_TEXT.get_rect(center=(600, 65))  #80
 
         Reflection_BUTTON = Button(image=pygame.image.load("assets/Reflection Rect.png"), pos=(600, 175),#200
