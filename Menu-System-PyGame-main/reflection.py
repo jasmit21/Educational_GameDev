@@ -1,8 +1,12 @@
 import math
 import sys
-
 import pygame
+from button import Button
+from pyvidplayer import Video
+from refraction import refract
 pygame.init()
+
+
 display_widhth = 1200
 display_height = 600
 screen = pygame.display.set_mode((display_widhth,display_height))
@@ -14,8 +18,89 @@ white = (255,255,255)
 font14 = pygame.font.SysFont("font.otf" , 22)
 font20 = pygame.font.SysFont("font.otf", 22)
 
+
+SCREEN = pygame.display.set_mode((1200, 600))
+pygame.display.set_caption("RJSS Games")
+Logo = pygame.image.load("assets/Logo.png")
+pygame.display.set_icon(Logo)
+Bg = pygame.image.load("assets/Cool Sky.png")
+
+vid = Video("assets/vid.mp4")
+vid2 = Video("assets/vid2.mp4")
+vid2.set_size((1200, 600))
+vid.set_size((1200, 600))
+
+
 def player(playerx,playery,rot_image):
     screen.blit(rot_image,(playerx,playery))
+
+def get_font(size):  # Returns Press-Start-2P in the desired size
+    return pygame.font.Font("assets/font.otf", size)
+
+def intro():
+
+    while True:
+        vid.draw(SCREEN, (0, 0))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                vid.close()
+                reflect()
+
+def intro2():
+
+    while True:
+        vid2.draw(SCREEN, (0, 0))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                vid2.close()
+                refract()
+
+def main_menu():
+    while True:
+        SCREEN.blit(Bg, (0, 0))
+
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+        MENU_TEXT = get_font(120).render("Let The Light Reflect", True, "#ffb700")
+        MENU_RECT = MENU_TEXT.get_rect(center=(600, 65))  #80
+
+        Reflection_BUTTON = Button(image=pygame.image.load("assets/Reflection Rect.png"), pos=(600, 175),#200
+                             text_input="Reflection", font=get_font(70), base_color="Black", hovering_color="White")
+        Refraction_BUTTON = Button(image=pygame.image.load("assets/Refraction Rect.png"), pos=(600, 292), #350
+                                text_input="Refraction", font=get_font(70), base_color="Black", hovering_color="White")
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 530),#490
+                             text_input="EXIT", font=get_font(70), base_color="Black", hovering_color="White")
+        HELP_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(600, 410),
+                             text_input="Help", font=get_font(70), base_color="Black", hovering_color="White")
+
+        SCREEN.blit(MENU_TEXT, MENU_RECT)
+
+        for button in [Reflection_BUTTON, Refraction_BUTTON, QUIT_BUTTON, HELP_BUTTON]:
+            button.changeColor(MENU_MOUSE_POS)
+            button.update(SCREEN)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if Reflection_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    intro()
+                    # reflect()
+                if Refraction_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    intro2()
+                    # refract()
+                if HELP_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    help()
+                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    pygame.quit()
+                    sys.exit()
+
+        pygame.display.update()
+
+
     
 def quitMenu(userQuit):  # quit menu options
 
@@ -33,7 +118,9 @@ def quitMenu(userQuit):  # quit menu options
                 if event.key == pygame.K_RETURN:
                     if userQuit == 1:
                         exitGame = True
-                        quit()
+                        main_menu()
+
+
 
                     else:
                         return
@@ -42,7 +129,7 @@ def quitMenu(userQuit):  # quit menu options
         pygame.draw.rect(screen, white, (502, 267, 196, 66))
 
 
-        quitPrompt = font14.render("Would you like to quit?", 1, black)
+        quitPrompt = font14.render("Return to main menu?", 1, black)
         quitYes = font20.render("YES", 1, black)
         quitNo = font20.render("NO", 1, black)
 
