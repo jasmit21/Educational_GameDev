@@ -8,7 +8,8 @@ pygame.init()
 
 SCREEN = pygame.display.set_mode((1200, 600))
 pygame.display.set_caption("RJSS Games")
-
+Logo = pygame.image.load("assets/Logo.png")
+pygame.display.set_icon(Logo)
 Bg = pygame.image.load("assets/Cool Sky.png")
 
 vid = Video("assets/vid.mp4")
