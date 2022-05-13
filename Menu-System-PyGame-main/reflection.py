@@ -17,7 +17,7 @@ white = (255,255,255)
 
 font14 = pygame.font.SysFont("font.otf" , 22)
 font20 = pygame.font.SysFont("font.otf", 22)
-
+Target = pygame.image.load("assets/Target.png")
 
 SCREEN = pygame.display.set_mode((1200, 600))
 pygame.display.set_caption("RJSS Games")
@@ -33,6 +33,7 @@ vid.set_size((1200, 600))
 
 def player(playerx,playery,rot_image):
     screen.blit(rot_image,(playerx,playery))
+    screen.blit(pygame.transform.scale(Target,(100,100)), (40,40))
 
 def get_font(size):  # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/font.otf", size)
@@ -60,7 +61,6 @@ def intro2():
 def main_menu():
     while True:
         SCREEN.blit(Bg, (0, 0))
-
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         MENU_TEXT = get_font(120).render("Let The Light Reflect", True, "#ffb700")
@@ -119,9 +119,6 @@ def quitMenu(userQuit):  # quit menu options
                     if userQuit == 1:
                         exitGame = True
                         main_menu()
-
-
-
                     else:
                         return
 
@@ -265,4 +262,3 @@ def reflect():
 
         pygame.display.update()
 
-# reflect()
